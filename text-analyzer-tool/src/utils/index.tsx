@@ -1,10 +1,3 @@
-import { findParagraph } from './findParagraph'
-import { findSentecies } from './findSentenceis'
-import { findCharacters } from './findCharacters'
-import { findWords } from './findWords'
-import { findPronouns } from './findPronouns'
-import { getAverageTime } from './getAverageTime'
-import { getLongestWord } from './getLongestWord'
 import { pronouns as pronounsList } from '../data/pronouns'
 
 
@@ -64,11 +57,4 @@ function analyzeText(text: String): typeAnalizeText {
 
 export {
     analyzeText,
-    findParagraph,
-    findSentecies,
-    findCharacters,
-    findWords,
-    findPronouns,
-    getAverageTime,
-    getLongestWord
 }

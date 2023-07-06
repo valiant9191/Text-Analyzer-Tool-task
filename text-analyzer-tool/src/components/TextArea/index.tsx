@@ -1,9 +1,7 @@
 import { useEffect, useRef } from 'react';
 import './index.scss'
 
-interface IProp {
-  handleText: (arg: string) => void
-}
+interface IProp { handleText: (arg: string) => void }
 
 const TextArea = ({ handleText }: IProp) => {
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null);

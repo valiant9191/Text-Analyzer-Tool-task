@@ -15,17 +15,6 @@ import TextArea from './components/TextArea'
 
 const App = () => {
   const [text, setText] = useState('');
-  // const [words, setWords] = useState(0);
-  // const [characters, setCharacters] = useState(0);
-  // const [sentences, setSentences] = useState(0);
-  // const [paragraphs, setParagraphs] = useState(0);
-  // const [pronouns, setPronouns] = useState(0);
-
-  // const [averageTime, setAverageTime] = useState(0);
-  // const [longestWord, setlongestWord] = useState('');
-
-
-
 
   const handleText = (value: any) => {
     setText(value)
