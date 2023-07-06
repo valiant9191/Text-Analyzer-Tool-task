@@ -1,13 +1,7 @@
 import './App.scss'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import {
-  findCharacters,
-  findParagraph,
-  findPronouns,
-  findSentecies,
-  findWords,
-  getAverageTime,
-  getLongestWord
+  analyzeText
 } from './utils'
 
 import BottomResultBox from './components/BottomResultBox'
@@ -21,28 +15,31 @@ import TextArea from './components/TextArea'
 
 const App = () => {
   const [text, setText] = useState('');
-  const [words, setWords] = useState(0);
-  const [characters, setCharacters] = useState(0);
-  const [sentences, setSentences] = useState(0);
-  const [paragraphs, setParagraphs] = useState(0);
-  const [pronouns, setPronouns] = useState(0);
+  // const [words, setWords] = useState(0);
+  // const [characters, setCharacters] = useState(0);
+  // const [sentences, setSentences] = useState(0);
+  // const [paragraphs, setParagraphs] = useState(0);
+  // const [pronouns, setPronouns] = useState(0);
 
-  const [averageTime, setAverageTime] = useState(0);
-  const [longestWord, setlongestWord] = useState('');
+  // const [averageTime, setAverageTime] = useState(0);
+  // const [longestWord, setlongestWord] = useState('');
+
+
+
 
   const handleText = (value: any) => {
     setText(value)
   };
 
-  useEffect(() => {
-    setParagraphs(findParagraph(text))
-    setSentences(findSentecies(text))
-    setCharacters(findCharacters(text))
-    setWords(findWords(text))
-    setPronouns(findPronouns(text))
-    setAverageTime(getAverageTime(text))
-    setlongestWord(getLongestWord(text))
-  }, [text])
+  const { words,
+    characters,
+    sentences,
+    paragraphs,
+    pronouns,
+    averageReadingTime,
+    longestWord,
+  } = analyzeText(text)
+
 
 
   return (
@@ -58,7 +55,7 @@ const App = () => {
             sentences={sentences} />
           <TextArea handleText={handleText} />
           <BottomResultBox
-            averageTime={averageTime}
+            averageTime={averageReadingTime}
             longestWord={longestWord}
           />
         </div>

@@ -5,46 +5,65 @@ import { findWords } from './findWords'
 import { findPronouns } from './findPronouns'
 import { getAverageTime } from './getAverageTime'
 import { getLongestWord } from './getLongestWord'
+import { pronouns as pronounsList } from '../data/pronouns'
 
 
-// function analyzeText(text: String) {
-//     // Counting Words
-//     const words = text.split(/\s+/).length;
+type typeAnalizeText = {
+    words: Number,
+    characters: Number,
+    sentences: Number,
+    paragraphs: Number,
+    pronouns: Number,
+    averageReadingTime: String,
+    longestWord: String,
+}
 
-//     // Counting Characters
-//     const characters = text.replace(/\s/g, '').length;
+function analyzeText(text: String): typeAnalizeText {
+    if (text.trim() === '') {
+        return {
+            words: 0,
+            characters: 0,
+            sentences: 0,
+            paragraphs: 0,
+            pronouns: 0,
+            averageReadingTime: '-',
+            longestWord: '-',
+        }
+    }
+    const words = text.trim().split(/\s+/).length;
 
-//     // Counting Sentences
-//     const sentences = text.split(/[.!?]+/).length;
+    console.log(text.trim().split(/\s+/))
+    const characters = text.length;
 
-//     // Counting Paragraphs
-//     const paragraphs = text.split(/\n\n+/).length;
+    const sentences = text.split(/[.!?]+/).length - 1;
 
-//     // Counting Pronouns (assuming a predefined list of pronouns)
-//     const pronouns = text.match(/\b(?:he|she|it|they|we|you|I|me|him|her|us|them)\b/gi)?.length || 0;
+    const paragraphs = text.split(/\n\n+/).length;
 
-//     // Average Reading Time (assuming 250 words per minute)
-//     const averageReadingTime = Math.ceil(words / 250);
+    const pronounsRegex = new RegExp(`\\b(?:${pronounsList.join('|')})\\b`, 'gi');
+    const pronouns = text.match(pronounsRegex)?.length || 0;
 
-//     // Finding Longest Word
-//     const longestWord = text
-//         .split(/\s+/)
-//         .reduce((longest, word) => (word.length > longest.length ? word : longest), '');
 
-//     return {
-//         Words: words,
-//         Characters: characters,
-//         Sentences: sentences,
-//         Paragraphs: paragraphs,
-//         Pronouns: pronouns,
-//         'Average Reading Time': averageReadingTime,
-//         'Longest word': longestWord,
-//     };
-// }
+    const averageReadingTime = '~' + Math.ceil(words / 250) + ' minute';
+
+    const longestWord = text
+        .split(/\s+/)
+        .reduce((longest, word) => (word.length > longest.length ? word : longest), '');
+
+
+    return {
+        words,
+        characters,
+        sentences,
+        paragraphs,
+        pronouns,
+        averageReadingTime,
+        longestWord,
+    };
+}
 
 
 export {
-    // analyzeText,
+    analyzeText,
     findParagraph,
     findSentecies,
     findCharacters,
