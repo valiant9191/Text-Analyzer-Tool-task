@@ -1,14 +1,20 @@
 import './index.scss'
 
-const BottomResultBox = () => {
+interface IProps {
+  averageTime: Number,
+  longestWord: String
+}
+
+const BottomResultBox = ({ averageTime, longestWord }: IProps) => {
+
   const bottomResultBar = [
     {
       title: 'Average Reading Time:',
-      value: '-',
+      value: averageTime ? averageTime : '-',
     },
     {
       title: 'Longest word:',
-      value: '-',
+      value: longestWord ? longestWord : '-',
     },
   ]
 
@@ -17,7 +23,7 @@ const BottomResultBox = () => {
       {bottomResultBar.map(({ title, value }) => (
         <div className="result-box" key={title}>
           <span className="box-title">{title}</span>
-          <span className="box-value">{value}</span>
+          <span className="box-value">{value.toString()}</span>
         </div>
       ))}
     </div>

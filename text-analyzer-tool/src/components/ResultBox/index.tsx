@@ -1,26 +1,35 @@
 import './index.scss'
 
-const ResultBox = () => {
+interface IProp {
+  sentences: Number,
+  pronouns: Number,
+  words: Number,
+  paragraphs: Number,
+  characters: Number,
+}
+
+
+const ResultBox = ({ sentences, pronouns, words, paragraphs, characters }: IProp) => {
   const resultBar = [
     {
       title: 'Words',
-      value: 0,
+      value: words,
     },
     {
       title: 'Characters',
-      value: 0,
+      value: characters,
     },
     {
       title: 'Sentences',
-      value: 0,
+      value: sentences,
     },
     {
       title: 'Paragraphs ',
-      value: 0,
+      value: paragraphs,
     },
     {
       title: 'Pronouns',
-      value: 0,
+      value: pronouns,
     },
   ]
 
@@ -29,7 +38,7 @@ const ResultBox = () => {
       {resultBar.map(({ title, value }) => (
         <div className="result-box" key={title}>
           <span className="box-title">{title}</span>
-          <span className="box-value">{value}</span>
+          <span className="box-value">{value ? value.toString() : 0}</span>
         </div>
       ))}
     </div>
